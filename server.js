@@ -3,7 +3,7 @@ const multer = require('multer');
 const app = express();
 const DBconn = require('./config/dbConn');
 const mongoose = require('mongoose');
-const PORT = process.env.PORT || 8080;
+const PORT = process.env.PORT;
 const {Server} = require('socket.io');
 const http = require('http');
 const cors = require('cors');
@@ -44,6 +44,7 @@ app.use(express.json())
 app.use(cors())
 
 //routes
+app.use('/',(req,res)=> res.send("Hello Working"))
 app.use('/login',require('./routes/login'));
 app.use('/reg',require('./routes/register'));
 app.use('/post',require('./routes/post'));
