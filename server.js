@@ -44,7 +44,7 @@ app.use(express.json())
 app.use(cors())
 
 //routes
-app.use('/',(req,res)=> res.send("Hello Working"))
+app.get('/',(req,res)=> res.send("Hello Working"))
 app.use('/login',require('./routes/login'));
 app.use('/reg',require('./routes/register'));
 app.use('/post',require('./routes/post'));
