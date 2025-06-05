@@ -3,9 +3,10 @@ const multer = require('multer');
 const app = express();
 const DBconn = require('./config/dbConn');
 const mongoose = require('mongoose');
-const PORT = process.env.PORT || 3500;
+const PORT = process.env.PORT || 8080;
 const {Server} = require('socket.io');
 const http = require('http');
+const cors = require('cors');
 require('dotenv').config();
 
 //Database Connection
@@ -14,7 +15,12 @@ DBconn();
 const activeUsers = [];
 
 const server = http.createServer(app);
-const io = new Server(server);
+const io = new Server(server,{
+  cors: {
+    origin: '*',
+    methods: ['GET', 'POST']
+  }});
+
 const storage = multer.memoryStorage();
 const upload = multer({ storage: storage });
 
@@ -35,6 +41,7 @@ io.on('connection',(socket)=>{
 //middleware
 app.use(express.urlencoded({extended:true}))
 app.use(express.json())
+app.use(cors())
 
 //routes
 app.use('/login',require('./routes/login'));
