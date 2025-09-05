@@ -2,7 +2,7 @@ const User = require('../model/User');
 
 const addUser = async (req, res) => {
   try {
-    const { uid, email, displayName, metadata } = req.body;
+    const { uid, email, displayName, metadata,Provider } = req.body;
 
     if (!uid || !email || !metadata) {
       return res.status(400).json({ message: 'Missing required fields' });
@@ -20,6 +20,7 @@ const addUser = async (req, res) => {
     const newUser = await User.create({
       firebaseUid: uid,
       displayName,
+      Provider:Provider,
       email,
       createdAt: creationTime,
       lastLogin: lastSignInTime

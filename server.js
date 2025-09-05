@@ -3,7 +3,7 @@ const multer = require('multer');
 const app = express();
 const DBconn = require('./config/dbConn');
 const mongoose = require('mongoose');
-const PORT = process.env.PORT;
+const PORT = process.env.PORT || 3100;
 const {Server} = require('socket.io');
 const http = require('http');
 const cors = require('cors');
@@ -48,7 +48,19 @@ app.get('/',(req,res)=> res.send("Hello Working"))
 app.use('/login',require('./routes/login'));
 app.use('/reg',require('./routes/register'));
 app.use('/post',require('./routes/post'));
+app.use('/saveListing',require('./routes/saveListingRoute'));
+app.use('/getListings',require('./routes/getListings'));
+app.use('/deleteListing',require('./routes/deleteListing'));
 app.use('/imageUpload',require('./routes/imageUpload'));
+app.use('/mySaves',require('./routes/getSavedListings'));
+app.use('/product',require('./routes/bannerPreview'))
+app.use('/Follow',require('./routes/addFollower'));
+app.use('/getFollowers',require('./routes/Follower'));
+app.use('/myListings',require('./routes/getMyPostsRoute'));
+
+// app.use((req,res)=>{
+//   res.status(404).send('<p>404 my Gee</p>')
+// })
 
 mongoose.connection.once('open',()=>{
     console.log("Connected To MongoDB ✅🍃")

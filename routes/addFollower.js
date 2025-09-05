@@ -1,11 +1,10 @@
 const express = require('express');
 const router = express.Router();
-const postHndl = require('../controllers/postCtrll');
+const {addFollower} = require("../controllers/Follower")
 
 router.route('/')
     .post((req,res)=>{
-        postHndl(req,res)
-    });
-
+        addFollower(req,res);
+    })
 
 module.exports = router;

@@ -7,6 +7,10 @@ const UserSchema = new Schema({
     required: true,
     unique: true,
   },
+  Provider:{
+    type: String,
+    default: 'Google'
+  },
   email: {
     type: String,
     required: true,
@@ -54,7 +58,10 @@ const UserSchema = new Schema({
       ref: 'User',
     },
   ],
+  rating:{type:mongoose.Schema.Types.Decimal128,default:0.0},
 
+  ratingCount:{type:Number, default:0},
+  
   createdAt: {
     type: Date,
     default: Date.now,

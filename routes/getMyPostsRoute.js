@@ -1,11 +1,10 @@
 const express = require('express');
 const router = express.Router();
-const postHndl = require('../controllers/postCtrll');
+const getMyListings =  require('../controllers/getMyListings');
 
 router.route('/')
     .post((req,res)=>{
-        postHndl(req,res)
-    });
-
+        getMyListings(req,res);
+    })
 
 module.exports = router;

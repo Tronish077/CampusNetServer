@@ -23,8 +23,11 @@ const handleUpload = async (req, res) => {
       return new Promise((resolve, reject) => {
         const stream = cloudinary.uploader.upload_stream(
           { resource_type: 'image',
-             public_id: publicId,
-              overwrite: true 
+            public_id: publicId,
+            overwrite: true ,
+            transformation: [{
+              gravity: 'auto'
+          }]
             },
           (error, result) => {
             if (error) return reject(error);

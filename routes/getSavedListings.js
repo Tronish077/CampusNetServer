@@ -1,10 +1,10 @@
 const express = require('express');
 const router = express.Router();
-const postHndl = require('../controllers/postCtrll');
+const getSavedListings = require('../controllers/getSavedListings');
 
 router.route('/')
     .post((req,res)=>{
-        postHndl(req,res)
+        getSavedListings(req,res)
     });
 
 
